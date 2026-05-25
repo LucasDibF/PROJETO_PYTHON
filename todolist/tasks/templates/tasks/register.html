@@ -1,0 +1,40 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Cadastro{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 450px;">
+  <div class="card-body">
+    <h2 class="h4 mb-4">Criar conta</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label">{{ field.label }}</label>
+          <input
+            type="{% if field.name == 'username' %}text{% else %}password{% endif %}"
+            name="{{ field.name }}"
+            class="form-control"
+            required
+          >
+          {% if field.help_text %}
+            <small class="text-muted">{{ field.help_text|safe }}</small>
+          {% endif %}
+          {% if field.errors %}
+            <div class="text-danger small">{{ field.errors|join:", " }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <button class="btn btn-primary w-100">Cadastrar</button>
+    </form>
+
+    <hr>
+    <p class="text-center m-0">
+      Já tem conta? <a href="{% url 'login' %}">Entrar</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

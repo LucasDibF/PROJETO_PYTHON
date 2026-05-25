@@ -1,0 +1,46 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}{% if novo %}Nova tarefa{% else %}Editar tarefa{% endif %}{% endblock %}
+
+{% block content %}
+<div class="card shadow-sm mx-auto" style="max-width: 600px;">
+  <div class="card-body">
+    <h2 class="h4 mb-4">{% if novo %}Nova tarefa{% else %}Editar tarefa{% endif %}</h2>
+
+    <form method="post">
+      {% csrf_token %}
+
+      {% for field in form %}
+        <div class="mb-3">
+          <label class="form-label">{{ field.label }}</label>
+          {% if field.name == "done" %}
+            <div class="form-check">
+              <input type="checkbox" name="{{ field.name }}" class="form-check-input" id="id_{{ field.name }}" {% if field.value %}checked{% endif %}>
+              <label class="form-check-label" for="id_{{ field.name }}">Marcar como concluída</label>
+            </div>
+          {% else %}
+            {{ field }}
+          {% endif %}
+          {% if field.errors %}
+            <div class="text-danger small">{{ field.errors|join:", " }}</div>
+          {% endif %}
+        </div>
+      {% endfor %}
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-primary">Salvar</button>
+        <a class="btn btn-outline-secondary" href="{% url 'task_list' %}">Cancelar</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<style>
+  input[type="text"], input[type="date"], textarea {
+    width: 100%;
+    padding: 0.375rem 0.75rem;
+    border: 1px solid #ced4da;
+    border-radius: 0.375rem;
+  }
+</style>
+{% endblock %}

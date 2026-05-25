@@ -1,0 +1,108 @@
+# ===========================
+# Ferramentas de IA / Assistentes
+# ===========================
+
+# Cursor (editor com IA)
+.cursor/
+.cursorignore
+.cursorrules
+.cursor-tutor/
+
+# Claude / Anthropic
+.claude/
+.claudeignore
+CLAUDE.md
+AGENTS.md
+
+# GitHub Copilot
+.copilot/
+.github/copilot-instructions.md
+
+# Codeium / Windsurf
+.codeium/
+.windsurf/
+.windsurfrules
+
+# Continue.dev
+.continue/
+
+# Aider
+.aider*
+.aider.chat.history.md
+.aider.input.history
+.aider.tags.cache.v3/
+
+# Cody (Sourcegraph)
+.cody/
+
+# Tabnine
+.tabnine/
+
+# Outros assistentes/configs gerais de IA
+.ai/
+.llm/
+.chatgpt/
+.gpt/
+.openai/
+*.ai.md
+prompts/
+ai-context/
+
+# ===========================
+# Python
+# ===========================
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Ambientes virtuais
+venv/
+env/
+ENV/
+.venv/
+.env
+
+# Testes / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+
+# ===========================
+# Django
+# ===========================
+*.log
+*.pot
+*.pyc
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+media/
+staticfiles/
+
+# Migrations (descomente se NÃO quiser versionar)
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# ===========================
+# Sistema operacional
+# ===========================
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===========================
+# Editores / IDEs
+# ===========================
+.vscode/
+.idea/
+*.sublime-*
+.spyderproject
+.spyproject

@@ -1,0 +1,46 @@
+{% extends "tasks/base.html" %}
+
+{% block title %}Minhas Tarefas{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-4">
+  <h1 class="h3 m-0">Minhas Tarefas</h1>
+  <a class="btn btn-primary" href="{% url 'task_create' %}">+ Nova tarefa</a>
+</div>
+
+<div class="card shadow-sm">
+  <ul class="list-group list-group-flush">
+    {% for task in tasks %}
+      <li class="list-group-item d-flex align-items-center">
+        <form method="post" action="{% url 'task_toggle' task.pk %}" class="me-3 m-0">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm {% if task.done %}btn-success{% else %}btn-outline-secondary{% endif %}">
+            {% if task.done %}✓{% else %}○{% endif %}
+          </button>
+        </form>
+
+        <div class="flex-grow-1">
+          <div class="{% if task.done %}text-decoration-line-through text-muted{% endif %}">
+            <strong>{{ task.title }}</strong>
+          </div>
+          {% if task.description %}
+            <small class="text-muted d-block">{{ task.description|truncatechars:80 }}</small>
+          {% endif %}
+          {% if task.deadline %}
+            <small class="text-muted">📅 {{ task.deadline|date:"d/m/Y" }}</small>
+          {% endif %}
+        </div>
+
+        <div class="btn-group btn-group-sm">
+          <a class="btn btn-outline-primary" href="{% url 'task_update' task.pk %}">Editar</a>
+          <a class="btn btn-outline-danger" href="{% url 'task_delete' task.pk %}">Excluir</a>
+        </div>
+      </li>
+    {% empty %}
+      <li class="list-group-item text-center text-muted py-5">
+        Nenhuma tarefa cadastrada. <a href="{% url 'task_create' %}">Criar a primeira</a>?
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
